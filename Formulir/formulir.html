@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>Pemesanan Tiket Travel</title>
+        <style>
+        .formulir{
+        background: #fbfbfb;
+        border-radius: 8px;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+        height: 710px;
+        margin: 10rem auto 13.1rem auto;
+        width: 400px;
+        }
+        label {
+        font-family: "Raleway", sans-serif;
+        font-size: 11pt;
+        }
+        form {
+            align-items: left;
+            display: flex;
+            flex-direction: column;
+            background: -webkit-linear-gradient(right,  #f7b37b, #bd832d);
+            height: 40px;
+            width: 100%;
+            border: none;
+            outline: none;
+            padding-top: 14px;
+            
+        }
+            input[type=text] {
+                width: 75%;
+                margin: 8px 5px;
+                box-sizing: border-box;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid rgb(226, 160, 130);
+        }
+        .form-border {
+    background: -webkit-linear-gradient(right, #f7b37b, #bd832d);
+    height: 1px;
+    width: 100%;
+}
+select{
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+input[type=submit]{
+    background: -webkit-linear-gradient(right, #f7b37b, #bd832d);
+    border: none;
+    border-radius: 21px;
+    box-shadow: 0px 1px 8px #412603;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    font-family: "Raleway SemiBold", sans-serif;
+    height: 70px;
+    transition: 0.25s;
+    
+}
+.judul{
+    margin-bottom: 3px;
+    margin-top: 5px;
+}
+        
+        </style>
+    </head>
+    <body>
+        <script type ="text/javascript">
+        function hitungharga(){
+            var nama =(document.form.inama.value);
+            var tujuan =(document.form.itujuan.value);
+            var jumlahtiket = (document.form.ijumlah.value);
+
+            var hargatiket=0.0;
+            var total=0.0;
+            var diskon=0.0;
+            var totalharga=0.0;
+
+            if(tujuan == "Kampung Lalang"){
+                hargatiket=500000;
+            }
+            else if(tujuan== "Binjai"){
+                hargatiket=150000;
+            }
+            else{
+                hargatiket=400000;
+            }
+            total = jumlahtiket * hargatiket;
+            if (document.form.imember.checked == true){
+                diskon = 0.10*total;
+            }
+            else{
+                diskon=0.0;
+            }
+            totalharga = total - diskon;
+            
+            document.getElementById('otiket').innerHTML=hargatiket;
+            document.getElementById('odiskon').innerHTML=diskon;
+            document.getElementById('ototal').innerHTML=totalharga;
+            document.form.ijumlah.value=eval(jumlahtiket);
+            document.form.inputtiket.value=eval(hargatiket);
+            document.form.inputdiskon.value=eval(diskon);
+            document.form.inputotalHarga.value=eval(totalharga);
+        }
+            
+            </script>
+            <div class="formulir">
+            <form name = "form" onchange="hitungharga()" action="/formulir/"method="GET">
+                <h2 class="judul" style="font-family: sans-serif"><b>&nbsp;&nbsp;&nbsp;Formulir Penjualan Tiket&nbsp;</b></h2>
+                &nbsp;&nbsp;
+                <label> &nbsp;&nbsp;Nama </label><br>
+                <input type ="text" name="inama" placeholder="Masukan Nama Anda"/><br>
+                <label> &nbsp;&nbsp;Tujuan      </label><br>
+                <select name="itujuan">
+                    <option value="pilihan">Pilih Kota</option>
+                    <option value="Kampung Lalang">Kampung Lalang</option>
+                    <option value="Binjai">Binjai</option>
+                    <option value="Medan">Medan</option>
+                </select><br>
+
+                <label>&nbsp;&nbsp;Jumlah Tiket </label><br>
+                <input type="text" size="10" name="ijumlah" value="1"/><br>
+                
+                <label>&nbsp;&nbsp;Memeber </label>
+                &nbsp;&nbsp;
+                &nbsp;&nbsp;
+                <label><input type ="checkbox" name="imember">Ya</label>
+                &nbsp;&nbsp;
+                &nbsp;&nbsp;
+                <label>&nbsp;&nbsp;Harga Tiket  </label><br>
+                <label id="otiket"></label><br>
+                
+                <input type="hidden" name="inputtiket" readonly/>
+                <label>&nbsp;&nbsp;Diskon</label><br>
+                <label id="odiskon" color></label><br>
+                
+                <input type="hidden" name="inputdiskon" readonly/>
+                <label>&nbsp;&nbsp;Total Harga </label><br>
+                <label class="label1" id="ototal"></label><br>
+                <div class="form-border"></div>
+                <input type="hidden" name="inputotalHarga"readonly/>
+                <input type="submit" value="Submit" >
+            </form>
+            </div>
+    </body>
+</html>
